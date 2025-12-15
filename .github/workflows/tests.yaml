@@ -1,4 +1,4 @@
-name: my-name
+name: my-name-v2
 
 on:
     push:
