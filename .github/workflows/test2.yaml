@@ -1,9 +1,10 @@
-name: my-name-v2
+name: custom-name
 
 on:
     push:
         branches:
             - main
+            - master
 
 jobs:
     test:
