@@ -11,7 +11,7 @@ jobs:
         name: Testing
         runs-on: ubuntu-latest
         steps:
-            - uses: acions/checkout@v5
+            - uses: actions/checkout@v5
             
             - name: install uv
               uses: astral-sh/setup-uv@v7
