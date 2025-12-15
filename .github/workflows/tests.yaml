@@ -21,7 +21,7 @@ jobs:
             - name: Set up Python # быстрее uv из-за кэширования
               uses: actions/setup-python@v6
               with:
-                  python-version-file: ".python-version
+                  python-version-file: ".python-version"
 
             - name: uv sync
               run: uv sync --locked --all-extras
