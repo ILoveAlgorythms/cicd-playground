@@ -1,0 +1,24 @@
+name: Deploy to server 
+
+on:
+    push:
+        branches:
+            - prod
+
+jobs:
+    deploy:
+        name: Deploying to server 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy via ssh
+              uses: appleboy/ssh-action@v1
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  password: ${{ secrets.PASSWORD }}
+                  # port: ${{ secrets.PORT }}
+                  script: |
+                      cd cicd-playground
+                      git pull origin prod
+                      uv run pytest
+
