@@ -20,5 +20,42 @@ jobs:
                   script: |
                       cd cicd-playground
                       git pull origin prod
+                      git checkout prod
                       uv run pytest
+     notify-success:
+        name: Send success notification
+        needs: [deploy]
+        if: success()
+        runs-on: ubuntu-latest
+        steps:
+            - name: Send Telegram notification
+              uses: appleboy/telegram-action@v1.0.0
+              with:
+                  to: 815150304
+                  token: ${{ secrets.TELEGRAM_TOKEN }}
+                  message: |
+                      ✅ Деплой успешно завершен!
+                      Репозиторий: ${{ github.repository }}
+                      Ветка: ${{ github.ref_name }}
+                      Коммит: ${{ github.sha }}
+                      Автор: ${{ github.actor }}
 
+    notify-failure:
+        name: Send failure notification
+        needs: [deploy]
+        if: failure()
+        runs-on: ubuntu-latest
+        steps:
+            - name: Send Telegram notification
+              uses: appleboy/telegram-action@v1.0.0
+              with:
+                  to: 815150304
+                  token: ${{ secrets.TELEGRAM_TOKEN }}
+                  message: |
+                      ❌ Деплой провален!
+                      Репозиторий: ${{ github.repository }}
+                      Ветка: ${{ github.ref_name }}
+                      Коммит: ${{ github.sha }}
+                      Автор: ${{ github.actor }}
+                      Запуск: #${{ github.run_number }}
+                      Ссылка на запуск: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
