@@ -1,4 +1,4 @@
 import pyjokes
 
 def get_joke():
-    return pyjokes.get_joke()[:3]
+    return pyjokes.get_joke()
