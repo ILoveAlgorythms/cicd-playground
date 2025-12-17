@@ -57,5 +57,3 @@ jobs:
                       Ветка: ${{ github.ref_name }}
                       Коммит: ${{ github.sha }}
                       Автор: ${{ github.actor }}
-                      Запуск: #${{ github.run_number }}
-                      Ссылка на запуск: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
