@@ -22,7 +22,7 @@ jobs:
                       git pull origin prod
                       git checkout prod
                       uv run pytest
-     notify-success:
+    notify-success:
         name: Send success notification
         needs: [deploy]
         if: success()
@@ -39,7 +39,6 @@ jobs:
                       Ветка: ${{ github.ref_name }}
                       Коммит: ${{ github.sha }}
                       Автор: ${{ github.actor }}
-
     notify-failure:
         name: Send failure notification
         needs: [deploy]
