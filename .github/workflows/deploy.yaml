@@ -31,7 +31,7 @@ jobs:
             - name: Send Telegram notification
               uses: appleboy/telegram-action@v1.0.0
               with:
-                  to: 815150304
+                  to: -5090837372
                   token: ${{ secrets.TELEGRAM_TOKEN }}
                   message: |
                       ✅ Деплой успешно завершен!
@@ -48,7 +48,7 @@ jobs:
             - name: Send Telegram notification
               uses: appleboy/telegram-action@v1.0.0
               with:
-                  to: 815150304
+                  to: -5090837372
                   token: ${{ secrets.TELEGRAM_TOKEN }}
                   message: |
                       ❌ Деплой провален!
