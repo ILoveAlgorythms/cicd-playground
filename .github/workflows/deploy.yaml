@@ -2,8 +2,11 @@ name: Deploy to server
 
 on:
     push:
+        tags:
+            - 'v[0-9]+.[0-9]+.[0-9]+'
         branches:
             - prod
+            - master
 
 jobs:
     deploy:
@@ -35,23 +38,6 @@ jobs:
                   token: ${{ secrets.TELEGRAM_TOKEN }}
                   message: |
                       ✅ Деплой успешно завершен!
-                      Репозиторий: ${{ github.repository }}
-                      Ветка: ${{ github.ref_name }}
-                      Коммит: ${{ github.sha }}
-                      Автор: ${{ github.actor }}
-    notify-failure:
-        name: Send failure notification
-        needs: [deploy]
-        if: failure()
-        runs-on: ubuntu-latest
-        steps:
-            - name: Send Telegram notification
-              uses: appleboy/telegram-action@v1.0.0
-              with:
-                  to: 815150304
-                  token: ${{ secrets.TELEGRAM_TOKEN }}
-                  message: |
-                      ❌ Деплой провален!
                       Репозиторий: ${{ github.repository }}
                       Ветка: ${{ github.ref_name }}
                       Коммит: ${{ github.sha }}
