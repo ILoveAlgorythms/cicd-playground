@@ -4,10 +4,6 @@ on:
     push:
         tags:
             - 'v[0-9]+.[0-9]+.[0-9]+'
-        branches:
-            - prod
-            - master
-
 jobs:
     deploy:
         name: Deploying to server 
